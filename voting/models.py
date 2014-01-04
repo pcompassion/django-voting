@@ -33,6 +33,7 @@ class Vote(models.Model):
     objects = VoteManager()
 
     class Meta:
+        db_table = 'votes'
         # One vote per user per object
         unique_together = (('user', 'content_type', 'object_id'),)
 
