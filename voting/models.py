@@ -1,7 +1,8 @@
 from datetime import datetime
 from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+User = get_user_model()
 from django.db import models
 
 try:
@@ -32,7 +33,6 @@ class Vote(models.Model):
     objects = VoteManager()
 
     class Meta:
-        db_table = 'votes'
         # One vote per user per object
         unique_together = (('user', 'content_type', 'object_id'),)
 
