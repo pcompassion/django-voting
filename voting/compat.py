@@ -1,6 +1,6 @@
 from __future__ import unicode_literals
 from django.conf import settings
-import django
+
 
 def UserModel():
     try:
@@ -9,3 +9,10 @@ def UserModel():
     except ImportError:
         from django.contrib.auth.models import User
         return User
+
+
+def UserModelString():
+    try:
+        return settings.AUTH_USER_MODEL
+    except AttributeError:
+        return 'auth.User'

@@ -1,7 +1,7 @@
 from datetime import datetime
 from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
-from voting.compat import UserModel
+from voting.compat import UserModelString
 from django.db import models
 
 try:
@@ -22,7 +22,7 @@ class Vote(models.Model):
     """
     A vote on an object by a User.
     """
-    user = models.ForeignKey(UserModel())
+    user = models.ForeignKey(UserModelString())
     content_type = models.ForeignKey(ContentType)
     object_id = models.PositiveIntegerField()
     object = generic.GenericForeignKey('content_type', 'object_id')
